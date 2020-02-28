@@ -24,19 +24,21 @@ _main:                                  ## @main
 	leaq	L_.str.1(%rip), %r14
 	leaq	L_.str.2(%rip), %r15
 	leaq	L_.str(%rip), %r12
-	jmp	LBB0_1
+	movl	4(%rsp), %esi
+	cmpl	$100, %esi
+	jle	LBB0_2
+	jmp	LBB0_10
 	.p2align	4, 0x90
-LBB0_3:                                 ##   in Loop: Header=BB0_1 Depth=1
+LBB0_3:                                 ##   in Loop: Header=BB0_2 Depth=1
 	movq	%rbx, %rdi
-LBB0_4:                                 ##   in Loop: Header=BB0_1 Depth=1
+LBB0_4:                                 ##   in Loop: Header=BB0_2 Depth=1
 	xorl	%eax, %eax
 	callq	_printf
 	incl	4(%rsp)
-LBB0_1:                                 ## =>This Inner Loop Header: Depth=1
 	movl	4(%rsp), %esi
 	cmpl	$100, %esi
 	jg	LBB0_10
-## %bb.2:                               ##   in Loop: Header=BB0_1 Depth=1
+LBB0_2:                                 ## =>This Inner Loop Header: Depth=1
 	movslq	%esi, %rax
 	imulq	$-2004318071, %rax, %rcx ## imm = 0x88888889
 	shrq	$32, %rcx
@@ -49,7 +51,7 @@ LBB0_1:                                 ## =>This Inner Loop Header: Depth=1
 	leal	(%rcx,%rcx,2), %ecx
 	cmpl	%ecx, %esi
 	je	LBB0_3
-## %bb.5:                               ##   in Loop: Header=BB0_1 Depth=1
+## %bb.5:                               ##   in Loop: Header=BB0_2 Depth=1
 	imulq	$1431655766, %rax, %rcx ## imm = 0x55555556
 	movq	%rcx, %rdx
 	shrq	$63, %rdx
@@ -58,7 +60,7 @@ LBB0_1:                                 ## =>This Inner Loop Header: Depth=1
 	leal	(%rcx,%rcx,2), %ecx
 	cmpl	%ecx, %esi
 	je	LBB0_6
-## %bb.7:                               ##   in Loop: Header=BB0_1 Depth=1
+## %bb.7:                               ##   in Loop: Header=BB0_2 Depth=1
 	imulq	$1717986919, %rax, %rax ## imm = 0x66666667
 	movq	%rax, %rcx
 	shrq	$63, %rcx
@@ -67,17 +69,20 @@ LBB0_1:                                 ## =>This Inner Loop Header: Depth=1
 	leal	(%rax,%rax,4), %eax
 	cmpl	%eax, %esi
 	je	LBB0_8
-## %bb.9:                               ##   in Loop: Header=BB0_1 Depth=1
+## %bb.9:                               ##   in Loop: Header=BB0_2 Depth=1
 	movq	%r12, %rdi
 	xorl	%eax, %eax
 	callq	_printf
 	incl	4(%rsp)
-	jmp	LBB0_1
+	movl	4(%rsp), %esi
+	cmpl	$100, %esi
+	jle	LBB0_2
+	jmp	LBB0_10
 	.p2align	4, 0x90
-LBB0_6:                                 ##   in Loop: Header=BB0_1 Depth=1
+LBB0_6:                                 ##   in Loop: Header=BB0_2 Depth=1
 	movq	%r14, %rdi
 	jmp	LBB0_4
-LBB0_8:                                 ##   in Loop: Header=BB0_1 Depth=1
+LBB0_8:                                 ##   in Loop: Header=BB0_2 Depth=1
 	movq	%r15, %rdi
 	jmp	LBB0_4
 LBB0_10:

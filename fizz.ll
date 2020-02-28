@@ -11,7 +11,7 @@ define i32 @main() #0 {
 ; LABEL 2 (continue if i < 100)
   %3 = load i32, i32* %1, align 4
   %4 = icmp sle i32 %3, 100
-  br i1 %4, label %5, label %25
+  br i1 %4, label %5, label %return
 
 ; LABEL 5 (if i % 15 == 0)
   %6 = srem i32 %3, 15
@@ -51,6 +51,7 @@ define i32 @main() #0 {
   br label %2
 
 ; LABEL 25
+return:
   ret i32 0
 }
 
